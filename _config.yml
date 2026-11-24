@@ -1,0 +1,14 @@
+title: Esther Istifanus
+description: Economics graduate building toward quantitative finance. Projects, simulations and research.
+url: "https://estherj22.github.io"
+baseurl: ""
+collections:
+  projects:
+    output: true
+    permalink: /projects/:name/
+defaults:
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: project

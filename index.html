@@ -1,205 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Esther Istifanus</title>
-<meta name="description" content="Economics student building toward quantitative finance. Projects, simulations and research.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#0c1222; --surface:#121a30; --line:#25304f;
-  --text:#dfe6f5; --muted:#8c99b8;
-  --bid:#4cc9a0; --ask:#f0707a; --link:#f2b84b;
-  color-scheme:dark;
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);
-  font:17px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
-main{max-width:760px;margin:0 auto;padding:56px 20px 96px}
-a{color:var(--link);text-underline-offset:3px}
-a:focus-visible{outline:2px solid var(--link);outline-offset:3px;border-radius:2px}
-h1{font-size:clamp(2.1rem,7vw,3.3rem);line-height:1.1;letter-spacing:-.02em;font-weight:600;margin:0 0 12px}
-h2{font-size:1.3rem;font-weight:600;margin:64px 0 8px}
-.lead{color:var(--muted);font-size:1.15rem;margin:0 0 20px;max-width:34em}
-.links{display:flex;flex-wrap:wrap;gap:6px 22px;margin:0 0 36px;padding:0;list-style:none}
+---
+layout: default
+---
+<h1>Esther Istifanus</h1>
+<!-- EDIT: one sentence on who you are and what you are aiming for -->
+<p class="lead">Economics graduate building toward quantitative finance, one simulation at a time.</p>
+<ul class="links">
+  <li><a href="https://github.com/Estherj22">GitHub</a></li>
+  <li><a href="#">LinkedIn</a></li><!-- EDIT: your LinkedIn URL -->
+  <li><a href="mailto:YOUR_EMAIL">Email</a></li><!-- EDIT: your email -->
+</ul>
 
-/* The live tape: the one animated thing on the page */
-.tape{border:1px solid var(--line);background:var(--surface);border-radius:6px;overflow:hidden}
-.tape canvas{display:block;width:100%;height:240px}
-.readout{display:flex;flex-wrap:wrap;gap:4px 24px;padding:10px 14px;border-top:1px solid var(--line);
-  font:13px/1.4 "IBM Plex Mono",ui-monospace,Menlo,monospace;color:var(--muted)}
-.readout b{font-weight:400;color:var(--text)}
-.key-bid{color:var(--bid)} .key-ask{color:var(--ask)}
-.note{color:var(--muted);font-size:.9rem;margin:10px 0 0}
-
-/* Projects */
-.projects{list-style:none;margin:16px 0 0;padding:0}
-.projects li{padding:22px 0;border-top:1px solid var(--line)}
-.projects li:last-child{border-bottom:1px solid var(--line)}
-.row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
-.projects h3{font-size:1.1rem;margin:0;font-weight:600}
-.status{font-size:.9rem;color:var(--muted)}
-.projects p{margin:6px 0 10px;max-width:38em}
-.tags{font:13px "IBM Plex Mono",ui-monospace,Menlo,monospace;color:var(--muted);margin:0 0 8px}
-.plinks{display:flex;gap:18px;margin:0;padding:0;list-style:none}
-.plinks li{padding:0;border:0}
-.projects li.next{border-style:dashed;color:var(--muted);border-bottom:1px dashed var(--line)}
-.projects li.next h3{color:var(--muted)}
-
-.about p{max-width:38em}
-footer{margin-top:72px;color:var(--muted);font-size:.9rem}
-@media (max-width:520px){ body{font-size:16px} .tape canvas{height:200px} }
-</style>
-</head>
-<body>
-<main>
-  <h1>Esther Istifanus</h1>
-  <!-- EDIT: one sentence on who you are and what you are aiming for -->
-  <p class="lead">Economics student building toward quantitative finance, one simulation at a time.</p>
-  <ul class="links">
-    <li><a href="https://github.com/Estherj22">GitHub</a></li>
-    <li><a href="#">LinkedIn</a></li><!-- EDIT: your LinkedIn URL -->
-    <li><a href="mailto:YOUR_EMAIL">Email</a></li><!-- EDIT: your email -->
-  </ul>
-
-  <div class="tape" role="img" aria-label="Animated simulation of a market maker quoting a bid and ask around a drifting price">
-    <canvas id="tape"></canvas>
-    <div class="readout">
-      <span><span class="key-bid">&#9679;</span> sold to us at our bid</span>
-      <span><span class="key-ask">&#9679;</span> bought from us at our ask</span>
-      <span>inventory <b id="inv">0</b></span>
-      <span>trades <b id="trades">0</b></span>
-    </div>
+<div class="tape" role="img" aria-label="Animated simulation of a market maker quoting a bid and ask around a drifting price">
+  <canvas id="tape"></canvas>
+  <div class="readout">
+    <span><span class="key-bid">&#9679;</span> sold to us at our bid</span>
+    <span><span class="key-ask">&#9679;</span> bought from us at our ask</span>
+    <span>inventory <b id="inv">0</b></span>
+    <span>trades <b id="trades">0</b></span>
   </div>
-  <p class="note">A live toy market. Prices are random numbers, and the shaded band is a market maker’s bid and ask. When too many traders buy from us, we hold less stock and the quotes shift.</p>
+</div>
+<p class="note">A live toy market. Prices are random numbers, and the shaded band is a market maker’s bid and ask.</p>
 
-  <h2>Projects</h2>
-  <ul class="projects" id="projects"></ul>
+<h2>Projects</h2>
+<ul class="projects">
+{% assign items = site.projects | sort: "order" %}
+{% for p in items %}
+  <li>
+    <div class="row"><h3><a href="{{ p.url | relative_url }}">{{ p.title }}</a></h3><span class="status">{{ p.status }}</span></div>
+    <p>{{ p.summary }}</p>
+    <p class="tags">{{ p.tags | join: " / " }}</p>
+    <ul class="plinks">
+      <li><a href="{{ p.url | relative_url }}">Details</a></li>
+      {% if p.repo %}<li><a href="{{ p.repo }}">Repository</a></li>{% endif %}
+    </ul>
+  </li>
+{% endfor %}
+  <li class="next"><div class="row"><h3>More on the way</h3></div><p>New projects get added here as I finish them.</p></li>
+</ul>
 
-  <h2>About</h2>
-  <div class="about">
-    <!-- EDIT: replace with your own words -->
-    <p>I study economics at Ahmadu Bello University and run African Capital Desk, an independent research desk covering African markets.</p>
-    <p>I’m practising probability and building small trading simulations to understand how markets work from the inside.</p>
-  </div>
-
-  <footer>© <span id="yr"></span> Esther Istifanus</footer>
-</main>
-
-<script>
-/* ---------------------------------------------------------------
-   ADD A PROJECT: copy one block below, paste it before the closing
-   bracket, and edit the text. Delete the "more coming" row at the
-   bottom of the page by removing the line marked REMOVE THIS.
----------------------------------------------------------------- */
-const projects = [
-  {
-    name: 'Market-making simulation',
-    status: 'In progress',
-    desc: 'A Python simulation of a market maker quoting a bid and ask against random and informed traders. Tests how spread size trades off against adverse selection and inventory risk.',
-    tags: ['Python', 'NumPy', 'pandas', 'Matplotlib'],
-    links: [{ label: 'Repository', href: '#' }, { label: 'Notebook', href: '#' }] // EDIT links
-  },
-  {
-    name: 'Quant Nova (contribution)',
-    status: 'Open source',
-    desc: 'Added an average time range feature to this public quantitative finance project.',
-    tags: ['Python', 'Open source'],
-    links: [{ label: 'My contribution', href: '#' }] // EDIT: link to your pull request
-  },
-  {
-    name: 'Trade reconciliation tool',
-    status: 'Built',
-    desc: 'EDIT: one sentence on what it does and what problem it solves.',
-    tags: ['EDIT: tools used'],
-    links: [{ label: 'Repository', href: '#' }]
-  }
-  /* , { name:'', status:'', desc:'', tags:[], links:[{label:'', href:''}] } */
-];
-
-const list = document.getElementById('projects');
-projects.forEach(p => {
-  const li = document.createElement('li');
-  li.innerHTML =
-    '<div class="row"><h3>' + p.name + '</h3><span class="status">' + p.status + '</span></div>' +
-    '<p>' + p.desc + '</p>' +
-    '<p class="tags">' + p.tags.join(' / ') + '</p>' +
-    '<ul class="plinks">' + p.links.map(l => '<li><a href="' + l.href + '">' + l.label + '</a></li>').join('') + '</ul>';
-  list.appendChild(li);
-});
-// REMOVE THIS row once you have more projects listed
-list.insertAdjacentHTML('beforeend', '<li class="next"><div class="row"><h3>More on the way</h3></div><p>New projects get added here as I finish them.</p></li>');
-document.getElementById('yr').textContent = new Date().getFullYear();
-
-/* ---------------- Live market-making tape ---------------- */
-(function () {
-  const canvas = document.getElementById('tape');
-  const ctx = canvas.getContext('2d');
-  const STEP_PX = 3, SPREAD = 1.2, LEAN = 0.01;
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let W, H, N, price = 100, inv = 0, trades = 0, frame = 0;
-  let mid = [], bid = [], ask = [], fills = [];
-  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-  const BID = css('--bid'), ASK = css('--ask'), TEXT = css('--text');
-
-  function size() {
-    const dpr = window.devicePixelRatio || 1;
-    W = canvas.clientWidth; H = canvas.clientHeight;
-    canvas.width = W * dpr; canvas.height = H * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    N = Math.ceil(W / STEP_PX) + 1;
-  }
-
-  function step() {
-    price += (Math.random() - 0.5) * 0.8 + (100 - price) * 0.002;
-    const quote = price - LEAN * inv;           // lean quotes against inventory
-    mid.push(price); bid.push(quote - SPREAD / 2); ask.push(quote + SPREAD / 2);
-    if (mid.length > N) { mid.shift(); bid.shift(); ask.shift(); }
-    fills.forEach(f => f.i--);
-    fills = fills.filter(f => f.i >= 0);
-    const r = Math.random();
-    const last = mid.length - 1;
-    if (r < 0.07) { inv--; trades++; fills.push({ i: last, y: ask[last], c: ASK }); }       // buyer lifts our ask
-    else if (r < 0.14) { inv++; trades++; fills.push({ i: last, y: bid[last], c: BID }); }  // seller hits our bid
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    const lo = Math.min(...bid) - 1, hi = Math.max(...ask) + 1;
-    const y = v => H - 16 - (v - lo) / (hi - lo) * (H - 32);
-    const x = i => W - (mid.length - 1 - i) * STEP_PX;
-    // quote band
-    ctx.beginPath();
-    mid.forEach((_, i) => ctx.lineTo(x(i), y(ask[i])));
-    for (let i = mid.length - 1; i >= 0; i--) ctx.lineTo(x(i), y(bid[i]));
-    ctx.closePath(); ctx.fillStyle = 'rgba(140,153,184,.16)'; ctx.fill();
-    // price line
-    ctx.beginPath();
-    mid.forEach((v, i) => i ? ctx.lineTo(x(i), y(v)) : ctx.moveTo(x(i), y(v)));
-    ctx.strokeStyle = TEXT; ctx.lineWidth = 1.5; ctx.stroke();
-    // fills
-    fills.forEach(f => { ctx.beginPath(); ctx.arc(x(f.i), y(f.y), 3.5, 0, 6.283); ctx.fillStyle = f.c; ctx.fill(); });
-  }
-
-  function readout() {
-    document.getElementById('inv').textContent = inv;
-    document.getElementById('trades').textContent = trades;
-  }
-
-  size();
-  for (let k = 0; k < N; k++) step();
-  draw(); readout();
-  window.addEventListener('resize', () => { size(); draw(); });
-  if (reduce) return;
-
-  (function loop() {
-    if (++frame % 3 === 0) { step(); draw(); if (frame % 15 === 0) readout(); }
-    requestAnimationFrame(loop);
-  })();
-})();
-</script>
-</body>
-</html>
+<h2>About</h2>
+<div class="prose">
+  <!-- EDIT: replace with your own words -->
+  <p>I graduated in economics from Ahmadu Bello University and run African Capital Desk, an independent research desk covering African markets.</p>
+  <p>I’m practising probability and building small trading simulations to understand how markets work from the inside.</p>
+</div>
+<script src="{{ '/assets/tape.js' | relative_url }}"></script>

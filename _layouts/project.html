@@ -1,0 +1,14 @@
+---
+layout: default
+---
+<p><a href="{{ '/' | relative_url }}">← All projects</a></p>
+<h1>{{ page.title }}</h1>
+<p class="lead">{{ page.summary }}</p>
+<p class="tags">{{ page.tags | join: " / " }} · {{ page.status }}</p>
+<ul class="links">
+  {% if page.repo %}<li><a href="{{ page.repo }}">Repository</a></li>{% endif %}
+  {% if page.notebook %}<li><a href="{{ page.notebook }}">Open in Colab</a></li>{% endif %}
+</ul>
+<div class="prose">
+{{ content }}
+</div>

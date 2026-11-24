@@ -1,0 +1,35 @@
+:root{--bg:#0c1222;--surface:#121a30;--line:#25304f;--text:#dfe6f5;--muted:#8c99b8;--bid:#4cc9a0;--ask:#f0707a;--link:#f2b84b;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:760px;margin:0 auto;padding:56px 20px 96px}
+a{color:var(--link);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--link);outline-offset:3px;border-radius:2px}
+h1{font-size:clamp(2.1rem,7vw,3.3rem);line-height:1.1;letter-spacing:-.02em;font-weight:600;margin:0 0 12px}
+h2{font-size:1.3rem;font-weight:600;margin:48px 0 8px}
+.lead{color:var(--muted);font-size:1.15rem;margin:0 0 20px;max-width:34em}
+.links{display:flex;flex-wrap:wrap;gap:6px 22px;margin:0 0 32px;padding:0;list-style:none}
+.tape{border:1px solid var(--line);background:var(--surface);border-radius:6px;overflow:hidden}
+.tape canvas{display:block;width:100%;height:240px}
+.readout{display:flex;flex-wrap:wrap;gap:4px 24px;padding:10px 14px;border-top:1px solid var(--line);font:13px/1.4 "IBM Plex Mono",ui-monospace,Menlo,monospace;color:var(--muted)}
+.readout b{font-weight:400;color:var(--text)}
+.key-bid{color:var(--bid)}.key-ask{color:var(--ask)}
+.note{color:var(--muted);font-size:.9rem;margin:10px 0 0}
+.projects{list-style:none;margin:16px 0 0;padding:0}
+.projects>li{padding:22px 0;border-top:1px solid var(--line)}
+.projects>li:last-child{border-bottom:1px solid var(--line)}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.projects h3{font-size:1.1rem;margin:0;font-weight:600}
+.projects h3 a{color:var(--text)}
+.status{font-size:.9rem;color:var(--muted)}
+.projects p{margin:6px 0 10px;max-width:38em}
+.tags{font:13px "IBM Plex Mono",ui-monospace,Menlo,monospace;color:var(--muted);margin:0 0 8px}
+.plinks{display:flex;gap:18px;margin:0;padding:0;list-style:none}
+.projects>li.next{border-style:dashed;color:var(--muted)}
+.projects>li.next h3{color:var(--muted)}
+.prose{max-width:38em}
+.prose h2{margin-top:36px}
+.prose img{max-width:100%;border-radius:6px}
+.prose table{border-collapse:collapse;width:100%;font-size:.95rem;display:block;overflow-x:auto}
+.prose th,.prose td{border-bottom:1px solid var(--line);padding:6px 12px 6px 0;text-align:left}
+footer{margin-top:72px;color:var(--muted);font-size:.9rem}
+@media (max-width:520px){body{font-size:16px}.tape canvas{height:200px}}
