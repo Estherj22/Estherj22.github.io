@@ -1,4 +1,4 @@
-:root{--bg:#0c1222;--surface:#121a30;--line:#25304f;--text:#dfe6f5;--muted:#8c99b8;--bid:#4cc9a0;--ask:#f0707a;--link:#f2b84b;color-scheme:dark}
+:root{--bg:#0c1222;--surface:#121a30;--line:#25304f;--text:#dfe6f5;--muted:#8c99b8;--bid:#4cc9a0;--ask:#f0707a;--link:##a78bfa;color-scheme:dark}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font:17px/1.6 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
 main{max-width:760px;margin:0 auto;padding:56px 20px 96px}
