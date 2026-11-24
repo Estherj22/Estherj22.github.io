@@ -6,4 +6,4 @@ summary: Added an average time range feature to a public quantitative finance pr
 tags: [Python, Open source]
 ---
 ## What I added
-EDIT: describe the feature in two or three sentences, and link to your pull request here and in the front matter at the top of this file (add a line starting with repo:).
+
