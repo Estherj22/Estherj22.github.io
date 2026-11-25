@@ -29,4 +29,4 @@ ATR measures market volatility by estimating the average magnitude of price move
 
 - Verified successful TypeScript compilation and production build.
 
-Contribution: [Github Link] (https://github.com/Estherj22/QuantNova)
+Contribution: [Github Link](https://github.com/Estherj22/QuantNova)
