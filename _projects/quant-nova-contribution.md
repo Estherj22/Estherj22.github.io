@@ -7,7 +7,7 @@ tags: [Python, Open source]
 ---
 ## What I added
 
-** Implemented the ATR calculation using True Range (TR) and Wilder's smoothing method.
+** Implemented the ATR calculation using True Range (TR) and Wilder's smoothing method.**
 
 ** Incorporated three price-movement components into True Range: the high-low range, the absolute difference between the current high and previous close, and the absolute difference between the current low and previous close.
 
